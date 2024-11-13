@@ -1,0 +1,34 @@
+ <nav class="tabs">
+        <span id="profissionais-tab" class="tab active" onclick="showTab('profissionais')">Profissionais</span>
+        <span id="comunidades-tab" class="tab" onclick="showTab('comunidades')">Comunidades</span>
+    </nav>
+
+    <div id="profissionais-content" class="tab-content active">
+        <a href="#" onclick="loadPage('professional.html'); return false;" class="card">
+            <h3>Valéria Peixoto</h3>
+            <p>Terapeuta ocupacional com foco em crianças com deficiências...</p>
+            <p>São Paulo - SP</p>
+        </a>
+    </div>
+
+    <div id="comunidades-content" class="tab-content">
+        <a href="#" onclick="loadPage('community.html'); return false;" class="card">
+            <h3>Cuidando Juntos</h3>
+            <span class="badge azul">Grupo de apoio</span>
+            <p>Espaço acolhedor para pais de crianças com condições degenerativas...</p>
+        </a>
+    </div>
+
+</div>
+
+<script>
+    function showTab(tabName) {
+        document.getElementById('profissionais-content').classList.remove('active');
+        document.getElementById('comunidades-content').classList.remove('active');
+        document.getElementById('profissionais-tab').classList.remove('active');
+        document.getElementById('comunidades-tab').classList.remove('active');
+
+        document.getElementById(tabName + '-content').classList.add('active');
+        document.getElementById(tabName + '-tab').classList.add('active');
+    }
+</script>
