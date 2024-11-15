@@ -1,34 +1,98 @@
- <nav class="tabs">
-        <span id="profissionais-tab" class="tab active" onclick="showTab('profissionais')">Profissionais</span>
-        <span id="comunidades-tab" class="tab" onclick="showTab('comunidades')">Comunidades</span>
-    </nav>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div>
+        <header>
+            <a href="index.html">
+                <div class="logo">
+                    <img src="logo.png" alt="Logo" class="logo-image">
+                </div>
+            </a>
+        </header>
 
-    <div id="profissionais-content" class="tab-content active">
-        <a href="#" onclick="loadPage('professional.html'); return false;" class="card">
-            <h3>Valéria Peixoto</h3>
-            <p>Terapeuta ocupacional com foco em crianças com deficiências...</p>
-            <p>São Paulo - SP</p>
-        </a>
+        <nav class="tabs">
+            <span id="profissionais-tab" class="tab active" onclick="showTab('profissionais')">Profissionais</span>
+            <span id="comunidades-tab" class="tab" onclick="showTab('comunidades')">Comunidades</span>
+        </nav>
+
+        <div id="profissionais-content" class="tab-content active">
+            <a href="#" onclick="openModal('professional.html'); return false;" class="card">
+                <h3>Valéria Peixoto</h3>
+                <p>Psicóloga especializada em saúde mental para famílias com filhos com deficiências degenerativas...</p>
+            </a>
+            <a href="#" onclick="openModal('professional.html'); return false;" class="card">
+                <h3>Valéria Peixoto</h3>
+                <p>Psicóloga especializada em saúde mental para famílias com filhos com deficiências degenerativas...</p>
+            </a>
+            <a href="#" onclick="openModal('professional.html'); return false;" class="card">
+                <h3>Valéria Peixoto</h3>
+                <p>Psicóloga especializada em saúde mental para famílias com filhos com deficiências degenerativas...</p>
+            </a>
+            <a href="#" onclick="openModal('professional.html'); return false;" class="card">
+                <h3>Valéria Peixoto</h3>
+                <p>Psicóloga especializada em saúde mental para famílias com filhos com deficiências degenerativas...</p>
+            </a>
+        </div>
+
+        <div id="comunidades-content" class="tab-content">
+            <a href="#" onclick="openModal('community.html'); return false;" class="card">
+                <h3>Cuidando Juntos</h3>
+                <p>A Comunidade 'Cuidando Juntos' é um espaço acolhedor dedicado a pais e cuidadores de crianças com deficiências...</p>
+            </a>
+            <a href="#" onclick="openModal('community.html'); return false;" class="card">
+                <h3>Cuidando Juntos</h3>
+                <p>A Comunidade 'Cuidando Juntos' é um espaço acolhedor dedicado a pais e cuidadores de crianças com deficiências...</p>
+            </a>
+            <a href="#" onclick="openModal('community.html'); return false;" class="card">
+                <h3>Cuidando Juntos</h3>
+                <p>A Comunidade 'Cuidando Juntos' é um espaço acolhedor dedicado a pais e cuidadores de crianças com deficiências...</p>
+            </a>
+            <a href="#" onclick="openModal('community.html'); return false;" class="card">
+                <h3>Cuidando Juntos</h3>
+                <p>A Comunidade 'Cuidando Juntos' é um espaço acolhedor dedicado a pais e cuidadores de crianças com deficiências...</p>
+            </a>
+        </div>
+        
+        <div id="modal" class="modal hidden">
+            <div class="modal-content" id="modal-content">
+                <button class="close-button" onclick="closeModal()">×</button>
+            </div>
+        </div>
     </div>
 
-    <div id="comunidades-content" class="tab-content">
-        <a href="#" onclick="loadPage('community.html'); return false;" class="card">
-            <h3>Cuidando Juntos</h3>
-            <span class="badge azul">Grupo de apoio</span>
-            <p>Espaço acolhedor para pais de crianças com condições degenerativas...</p>
-        </a>
-    </div>
+    <script>
+        function showTab(tabName) {
+            document.getElementById('profissionais-content').classList.remove('active');
+            document.getElementById('comunidades-content').classList.remove('active');
+            document.getElementById('profissionais-tab').classList.remove('active');
+            document.getElementById('comunidades-tab').classList.remove('active');
 
-</div>
+            document.getElementById(tabName + '-content').classList.add('active');
+            document.getElementById(tabName + '-tab').classList.add('active');
+        }
 
-<script>
-    function showTab(tabName) {
-        document.getElementById('profissionais-content').classList.remove('active');
-        document.getElementById('comunidades-content').classList.remove('active');
-        document.getElementById('profissionais-tab').classList.remove('active');
-        document.getElementById('comunidades-tab').classList.remove('active');
+        function openModal(url) {
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    document.getElementById('modal-content').innerHTML = `<button class="close-button" onclick="closeModal()">×</button>` + html;
+                    document.getElementById('modal').classList.remove('hidden');
+                    document.getElementById('modal').classList.add('visible');
+                })
+                .catch(error => console.error('Erro ao carregar o conteúdo do modal:', error));
+        }
 
-        document.getElementById(tabName + '-content').classList.add('active');
-        document.getElementById(tabName + '-tab').classList.add('active');
-    }
-</script>
+        function closeModal() {
+            document.getElementById('modal').classList.remove('visible');
+            document.getElementById('modal').classList.add('hidden');
+            document.getElementById('modal-content').innerHTML = '';
+        }
+    </script>
+</body>
+</html>
